@@ -1,0 +1,28 @@
+%section {
+  background: $color-white;
+  box-shadow: $box-shadow;
+  border-radius: 4px;
+  padding: 3rem;
+  margin-block-end: 3rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+%flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%input-text {
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-block-end: 1px solid $color-gray;
+  font-size: 1rem;
+  width: 300px;
+
+  &:focus {
+    outline: 0;
+    border-block-end: 1px solid $color-gray-dark;
+  }
+}
