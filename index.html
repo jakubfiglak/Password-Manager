@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validator</title>
+    <link rel="stylesheet" href="./scss/main.scss" />
+    <script src="./js/index.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="heading">Sign Up Form</h2>
+      <form class="signup" id="signup" autocomplete="off">
+        <fieldset class="signup__field">
+          <input
+            type="text"
+            class="signup__input"
+            id="username"
+            name="username"
+            placeholder=" "
+            required
+            minlength="4"
+            maxlength="20"
+          />
+          <label for="username" class="signup__label">username</label>
+          <small class="signup__error">This field is required</small>
+        </fieldset>
+        <fieldset class="signup__field">
+          <input
+            type="email"
+            class="signup__input"
+            id="email"
+            name="email"
+            required
+            placeholder=" "
+          />
+          <label for="email" class="signup__label">email</label>
+          <small class="signup__error">This field is required</small>
+        </fieldset>
+        <fieldset class="signup__field">
+          <input
+            type="password"
+            class="signup__input"
+            id="password"
+            name="password"
+            required
+            placeholder=" "
+            pattern="^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$"
+            title="1 uppercase, 1 lowercase, 1 digit, 1 special character, length of 10"
+          />
+          <label for="password" class="signup__label">password</label>
+          <small class="signup__error">This field is required</small>
+        </fieldset>
+        <input type="submit" value="submit" class="btn" />
+      </form>
+    </div>
+  </body>
+</html>
