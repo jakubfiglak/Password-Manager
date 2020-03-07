@@ -18,6 +18,34 @@
   background: #34aff9;
 }
 
+.form, .generator {
+  background: #ffffff;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  padding: 3rem;
+  margin-block-end: 3rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form__element, .generator__setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form__input {
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-block-end: 1px solid #d3d8dd;
+  font-size: 1rem;
+  width: 300px;
+}
+.form__input:focus {
+  outline: 0;
+  border-block-end: 1px solid #818e9b;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -35,67 +63,28 @@ html {
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
+  background: #e5e5e5;
 }
 
 .heading {
   font-size: 2rem;
+  margin-block-end: 3rem;
 }
 
-.signup {
-  display: grid;
-  margin-block-start: 5rem;
-  gap: 5rem;
-}
-.signup__field {
-  position: relative;
-  display: flex;
-  border: 0;
-}
-.signup__label {
-  position: absolute;
-  color: #818e9b;
-  font-size: 1.1rem;
-  bottom: 0.7rem;
-  left: 1rem;
-  transition: all 0.2s ease-in;
-  pointer-events: none;
-}
-.signup__input {
+.generator__number-input {
   padding: 0.7rem 1rem;
   border: 0;
   border-block-end: 1px solid #d3d8dd;
-  font-size: 1.3rem;
-  width: 300px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
 }
-.signup__input--invalid {
-  border-block-end: 1px solid #f7685b;
-}
-.signup__input--valid {
-  border-block-end: 1px solid #2ed47a;
-}
-.signup__input:focus {
+.generator__number-input:focus {
   outline: 0;
   border-block-end: 1px solid #818e9b;
 }
-.signup__input:focus + .signup__label {
-  bottom: 3rem;
-  color: #109cf1;
-}
-.signup__input:not(:placeholder-shown):not(:focus) + .signup__label {
-  bottom: 3rem;
-  color: #818e9b;
-}
-.signup__error {
-  position: absolute;
-  top: 3.2rem;
-  left: 1rem;
-  color: #f7685b;
-  font-style: italic;
-  opacity: 0;
-  transition: opacity 0.2s ease-in;
-}
-.signup__error--active {
-  opacity: 1;
+
+.form__label {
+  padding-inline-end: 2rem;
 }
 
 /*# sourceMappingURL=/main.77bb5cfd.css.map */
