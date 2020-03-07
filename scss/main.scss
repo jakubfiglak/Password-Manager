@@ -44,6 +44,42 @@ html {
       border-block-end: 1px solid $color-gray-dark;
     }
   }
+
+  &__checkbox {
+    -webkit-appearance: none;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border: 2px solid $color-background;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+
+    &::before {
+      content: '\2714';
+      display: block;
+      position: absolute;
+      color: $color-green;
+      font-size: 1.5rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:checked {
+      border-color: $color-green;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .form {
