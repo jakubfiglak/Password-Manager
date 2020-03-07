@@ -1,61 +1,51 @@
-const signupInputs = document.querySelectorAll('.signup__input');
+const lengthEl = document.querySelector('#length');
+const options = document.querySelectorAll('.generator__checkbox');
+const generateBtn = document.querySelector('#generate');
+const passwordEl = document.querySelector('#password');
+const labelEl = document.querySelector('#label');
+const passwordForm = document.querySelector('#form');
 
-function clearPrevState(input) {
-  if (input.classList.contains('signup__input--invalid')) {
-    const field = input.closest('.signup__field');
-    const errorMsg = field.querySelector('.signup__error');
-    errorMsg.classList.remove('signup__error--active');
-    input.classList.remove('signup__input--invalid');
-  } else if (input.classList.contains('signup__input--valid')) {
-    input.classList.remove('signup__input--valid');
+function generateRandomSymbol(type) {
+  switch (type) {
+    case 'lowercase':
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+
+    case 'uppercase':
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+
+    case 'number':
+      return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+
+    case 'symbol': {
+      const symbols = `~!@#$%^&*()_+={}[]|:;"'<,>.?/`;
+      return symbols[Math.floor(Math.random() * symbols.length)];
+    }
+
+    default:
+      return '';
   }
 }
 
-function displayError(input, message) {
-  const field = input.closest('.signup__field');
-  const errorMsg = field.querySelector('.signup__error');
-  errorMsg.innerText = `${message}`;
-  errorMsg.classList.add('signup__error--active');
-  input.classList.add('signup__input--invalid');
+function getRandomType(types) {
+  return types[Math.floor(Math.random() * types.length)];
 }
 
-function displaySuccess(input) {
-  input.classList.add('signup__input--valid');
-}
+function generatePassword() {
+  const length = lengthEl.value;
+  const types = [];
+  let password = '';
 
-function validateInput() {
-  clearPrevState(this);
+  options.forEach(option => (option.checked ? types.push(option.name) : null));
 
-  const {
-    valid,
-    valueMissing,
-    typeMismatch,
-    tooShort,
-    patternMismatch,
-  } = this.validity;
-
-  if (valid) {
-    displaySuccess(this);
-  } else {
-    if (valueMissing) {
-      displayError(this, 'This field is required');
-    }
-    if (typeMismatch) {
-      displayError(this, 'Please enter a valid e-mail');
-    }
-    if (tooShort) {
-      displayError(
-        this,
-        `${this.name} should be at least ${this.minLength} chars long`
-      );
-    }
-    if (patternMismatch) {
-      displayError(this, `${this.name} should contain at least ${this.title}`);
-    }
+  if (!types.length) {
+    return;
   }
+
+  for (let i = 0; i < length; i++) {
+    password += generateRandomSymbol(getRandomType(types));
+  }
+
+  passwordEl.value = password;
 }
 
-signupInputs.forEach(input => {
-  input.addEventListener('invalid', validateInput);
-  input.addEventListener('blur', validateInput);
-});
+generateBtn.addEventListener('click', generatePassword);

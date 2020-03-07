@@ -118,65 +118,59 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/index.js":[function(require,module,exports) {
-var signupInputs = document.querySelectorAll('.signup__input');
+var lengthEl = document.querySelector('#length');
+var options = document.querySelectorAll('.generator__checkbox');
+var generateBtn = document.querySelector('#generate');
+var passwordEl = document.querySelector('#password');
+var labelEl = document.querySelector('#label');
+var passwordForm = document.querySelector('#form');
 
-function clearPrevState(input) {
-  if (input.classList.contains('signup__input--invalid')) {
-    var field = input.closest('.signup__field');
-    var errorMsg = field.querySelector('.signup__error');
-    errorMsg.classList.remove('signup__error--active');
-    input.classList.remove('signup__input--invalid');
-  } else if (input.classList.contains('signup__input--valid')) {
-    input.classList.remove('signup__input--valid');
+function generateRandomSymbol(type) {
+  switch (type) {
+    case 'lowercase':
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+
+    case 'uppercase':
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+
+    case 'number':
+      return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+
+    case 'symbol':
+      {
+        var symbols = "~!@#$%^&*()_+={}[]|:;\"'<,>.?/";
+        return symbols[Math.floor(Math.random() * symbols.length)];
+      }
+
+    default:
+      return '';
   }
 }
 
-function displayError(input, message) {
-  var field = input.closest('.signup__field');
-  var errorMsg = field.querySelector('.signup__error');
-  errorMsg.innerText = "".concat(message);
-  errorMsg.classList.add('signup__error--active');
-  input.classList.add('signup__input--invalid');
+function getRandomType(types) {
+  return types[Math.floor(Math.random() * types.length)];
 }
 
-function displaySuccess(input) {
-  input.classList.add('signup__input--valid');
-}
+function generatePassword() {
+  var length = lengthEl.value;
+  var types = [];
+  var password = '';
+  options.forEach(function (option) {
+    return option.checked ? types.push(option.name) : null;
+  });
 
-function validateInput() {
-  clearPrevState(this);
-  var _this$validity = this.validity,
-      valid = _this$validity.valid,
-      valueMissing = _this$validity.valueMissing,
-      typeMismatch = _this$validity.typeMismatch,
-      tooShort = _this$validity.tooShort,
-      patternMismatch = _this$validity.patternMismatch;
-
-  if (valid) {
-    displaySuccess(this);
-  } else {
-    if (valueMissing) {
-      displayError(this, 'This field is required');
-    }
-
-    if (typeMismatch) {
-      displayError(this, 'Please enter a valid e-mail');
-    }
-
-    if (tooShort) {
-      displayError(this, "".concat(this.name, " should be at least ").concat(this.minLength, " chars long"));
-    }
-
-    if (patternMismatch) {
-      displayError(this, "".concat(this.name, " should contain at least ").concat(this.title));
-    }
+  if (!types.length) {
+    return;
   }
+
+  for (var i = 0; i < length; i++) {
+    password += generateRandomSymbol(getRandomType(types));
+  }
+
+  passwordEl.value = password;
 }
 
-signupInputs.forEach(function (input) {
-  input.addEventListener('invalid', validateInput);
-  input.addEventListener('blur', validateInput);
-});
+generateBtn.addEventListener('click', generatePassword);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
