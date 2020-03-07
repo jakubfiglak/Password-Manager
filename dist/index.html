@@ -1,1 +1,49 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Form Validator</title><link rel="stylesheet" href="main.02b97f34.css"><script src="js.7047a6e1.js" defer></script></head><body> <div class="container"> <h2 class="heading">Sign Up Form</h2> <form class="signup" id="signup" autocomplete="off"> <fieldset class="signup__field"> <input type="text" class="signup__input" name="username" placeholder=" " required minlength="4" maxlength="20"> <label for="username" class="signup__label">username</label> <small class="signup__error">This field is required</small> </fieldset> <fieldset class="signup__field"> <input type="email" class="signup__input" name="email" required placeholder=" "> <label for="email" class="signup__label">email</label> <small class="signup__error">This field is required</small> </fieldset> <fieldset class="signup__field"> <input type="password" class="signup__input" name="password" required placeholder=" " pattern="^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$" title="1 uppercase, 1 lowercase, 1 digit, 1 special character, length of 10"> <label for="password" class="signup__label">password</label> <small class="signup__error">This field is required</small> </fieldset> <input type="submit" value="submit" class="btn"> </form> </div> </body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validator</title>
+    <link rel="stylesheet" href="/main.77bb5cfd.css">
+    <script src="/js.00a46daa.js" defer=""></script>
+  <script src="/main.77bb5cfd.js"></script></head>
+  <body>
+    <div class="container">
+      <h1 class="heading">Password Manager</h1>
+      <div class="generator">
+        <div class="generator__setting">
+          <label for="length" class="generator__label">Length</label>
+          <input type="number" name="length" id="length" min="8" max="20" value="8" class="generator__number-input">
+        </div>
+        <div class="generator__setting">
+          <label for="lowercase" class="generator__label">Include Lowercase</label>
+          <input type="checkbox" name="lowercase" id="lowercase" class="generator__checkbox">
+        </div>
+        <div class="generator__setting">
+          <label for="uppercase" class="generator__label">Include Uppercase</label>
+          <input type="checkbox" name="uppercase" id="uppercase" class="generator__checkbox">
+        </div>
+        <div class="generator__setting">
+          <label for="number" class="generator__label">Include Numbers</label>
+          <input type="checkbox" name="number" id="number" class="generator__checkbox">
+        </div>
+        <div class="generator__setting">
+          <label for="symbol" class="generator__label">Include Symbols</label>
+          <input type="checkbox" name="symbol" id="symbol" class="generator__checkbox">
+        </div>
+        <button class="btn generator__btn">Generate password</button>
+      </div>
+      <form class="form" id="form">
+        <div class="form__element">
+          <label for="password" class="form__label">Password</label>
+          <input type="text" name="password" id="password" disabled="" required="" class="form__input">
+        </div>
+        <div class="form__element">
+          <label for="label" class="form__label">Label</label>
+          <input type="text" name="label" id="label" required="" class="form__input">
+        </div>
+        <input type="submit" value="Save your password" class="btn form__btn">
+      </form>
+    </div>
+  </body>
+</html>
